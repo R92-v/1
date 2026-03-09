@@ -1,8 +1,116 @@
-hello wohfj
-trampas?
-hola joaneta
-notas para examen:
-print() -> te imprime
-get(joan.ass) -> para detonar
-
-hello camila, fuck italy and fuck tung tung sahur
+For comp
+#-------------------------------------------------------------------------------------------------------------------------
+import math 
+import numpy as np
+from numpy import random
+import statistics as st
+from timeit import timeit
+import os
+import scipy
+import matplotlib.pyplot as plt
+from matplotlib import gridspec
+help(plt.plot)
+%ismagic
+%quickref
+%whos
+#-------------------------------------------------------------------------------------------------------------------------
+fig3 = plt.figure(constrained_layout=True)
+gs = fig3.add_gridspec(2, 2)  # 2 rows, 2 columns
+f3_ax2 = fig3.add_subplot(gs[:, 1]) #(in grid)
+f3_ax2.set_title("roots of x$^{2}$-5x+6")
+x=np.linspace(-5,5,100)
+y=x**2-5*x+6
+roots = np.roots([1, -5, 6])
+f3_ax2.plot(x,y,linewidth="10", linestyle="--", color="blue”, label="x$^{2}$-5x+6")
+f3_ax2.scatter(roots, np.zeros_like(roots), color="red”, label=‘”Roots”,s=100)
+f3_ax2.set_ylim([-5, 10])
+f3_ax2.grid()
+f3_ax2.legend()
+#-------------------------------------------------------------------------------------------------------------------------
+fig,ax=plt.subplots(1,2,figsize=[13,3])
+plt.suptitle("Functions")
+x=np.linspace(0,5,100)
+def g(x):
+    return np.exp(-x)
+def f(x):
+    return 1/(x**2+1)
+ax[0].plot(x,f(x),label=r"$\frac{1}{x^{2}+1}$")
+ax[0].set_title("f(x)")
+ax[1].plot(x,g(x),label=r"$e^{-x}$",color="red")
+ax[1].set_title("g(x)")
+for i in ax:
+    i.set_xlabel("x")
+    i.set_ylabel("y")
+    i.legend()
+plt.show()
+#-------------------------------------------------------------------------------------------------------------------------
+ans = 0
+for x in range(0, 101):
+    ans += 1/(4*(x**2)-1)
+# create tiny figure
+fig = plt.subplots(figsize=[0.1, 0.1])
+plt.axis('off')  # hide axes
+# display answer as "title" with processed latex
+plt.title(rf"$\sum_{{x=0}}^{{100}} \frac{{1}}{{4x^2-1}} = {ans:.5f}$")
+plt.show()
+#-------------------------------------------------------------------------------------------------------------------------
+fig,ax=plt.subplots(5,5,figsize=[10,10])
+t = np.linspace(0, 2*np.pi, 1000) # Where i,j ∈[1,2,3,4,5], and 0 ≤t≤2π
+fig.suptitle("Lissajous figures")
+for i in range(5):
+    for j in range(5):
+        x = np.cos((i+1)*t)
+        y = np.sin((j+1)*t)
+        ax[i,j].plot(x,y)
+        ax[i,j].set_xticks([])
+        ax[i,j].set_yticks([])
+        ax[i,j].set_title(f"(ω$_x$, ω$_y$) = ({i+1},{j+1})")
+ax = plt.gca()
+ax.set_xlim([0, 2])
+ax.set_ylim([0, 2.5])
+plt.xticks([0, 0.1, 0.2, 0.3, 0.5,0.8, 1.3])
+plt.legend()
+plt.show()
+#-------------------------------------------------------------------------------------------------------------------------
+zero=np.array(np.linspace(0,0,num=5))
+one=np.array(np.linspace(1,2,num=5))
+pi=np.array(np.linspace(np.pi,np.pi,num=5))
+stack=np.vstack((zero, one, pi))
+print(stack)
+print(stack.T)
+print(stack[1:4,2:5])
+print(stack.reshape(5, 3))
+print(stack.flatten())
+#-------------------------------------------------------------------------------------------------------------------------
+fizzbuzz = []
+for i in range(101):  # 0 to 100
+    if i == 0:
+        fizzbuzz.append(0)
+    elif i % 15 == 0:
+        fizzbuzz.append("FizzBuzz")
+    elif i % 3 == 0:
+        fizzbuzz.append("Fizz")
+    elif i % 5 == 0:
+        fizzbuzz.append("Buzz")
+    else:
+        fizzbuzz.append(i)
+print(fizzbuzz)
+print(len(fizzbuzz))
+#-------------------------------------------------------------------------------------------------------------------------
+i=0
+unsorted_numbers = [5, 9, 84, 23, 5, 101, 3, 7, 65, 15, 9]
+sorted_numbers = []
+for i in range(len(unsorted_numbers)+1): # What should ... be?
+    minim = unsorted_numbers[0]
+    if int(unsorted_numbers[i])==min(unsorted_numbers):
+        sorted_numbers.append(unsorted_numbers[i])
+        del unsorted_numbers[i]
+        i+=1
+    i=+1
+#-------------------------------------------------------------------------------------------------------------------------
+variable=input()
+variable.lower()
+print(round(variable,2))
+print(math.floor(variable))
+#-------------------------------------------------------------------------------------------------------------------------
+A=np.arrange(1,10,1).reshape(3,3)
