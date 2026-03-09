@@ -38,6 +38,7 @@ ax[0].plot(x,f(x),label=r"$\frac{1}{x^{2}+1}$")
 ax[0].set_title("f(x)")
 ax[1].plot(x,g(x),label=r"$e^{-x}$",color="red")
 ax[1].set_title("g(x)")
+ax[1].set_yscale("log")
 for i in ax:
     i.set_xlabel("x")
     i.set_ylabel("y")
